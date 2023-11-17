@@ -35,4 +35,8 @@
     <Folder Include="wwwroot\_Archive\.vs\NiceAdmin\FileContentIndex\merges\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SAT.DATA.EF\SAT.DATA.EF.csproj" />
+  </ItemGroup>
+
 </Project>
