@@ -19,6 +19,7 @@ namespace SAT.DATA.EF.Models//.Metadata
 
         [Required]
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string CourseDescription { get; set; } = null!;
 
         [Required]
@@ -31,8 +32,6 @@ namespace SAT.DATA.EF.Models//.Metadata
         [StringLength(500, ErrorMessage = "Cannot Exceed 500 Characters")]
         public string? Notes { get; set; }
 
-        [Required]
-        [Display(Name = "Active")]
         public bool IsActive { get; set; }
     }
 
