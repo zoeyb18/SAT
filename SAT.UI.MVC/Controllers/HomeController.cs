@@ -18,6 +18,11 @@ namespace SAT.UI.MVC.Controllers
             return View();
         }
 
+        public IActionResult MyProfile ()
+        {
+            return View();
+        }
+
 
 
         public IActionResult Privacy()
