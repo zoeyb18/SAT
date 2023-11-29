@@ -4,11 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Student Status</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="m-3">
+    <h1 class="p-4">Student Status</h1>
+
+    <div class="d-flex align-items-end flex-column px-3">
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Add +</a>
+        </p>
+
+    <div class="row gx-0 gy-x">
+        <div class="col-2 align-items-center d-flex flex-row-reverse fs-4">
+            <a asp-action="Index" asp-controller="StudentStatus"><i class="bi bi-list-ul fw-light"></i></a>
+            <a asp-action="Tiled" asp-controller="StudentStatus"><i class="bi bi-grid-3x3-gap text-primary fw-boldt"></i></a>
+        </div>
+    </div>
+
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -39,3 +53,4 @@
 }
     </tbody>
 </table>
+</div>

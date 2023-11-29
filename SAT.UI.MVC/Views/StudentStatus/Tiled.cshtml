@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SAT.UI.MVC.Models.StudentStatus>
+
+@{
+    ViewData["Title"] = "Tiled Student Status";
+}
+
+<h1>Student Status</h1>
+
+<div class="m-3">
+    <h1 class="p-4">Student Status</h1>
+
+    <div class="d-flex align-items-end flex-column px-3">
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Add +</a>
+        </p>
+
+        <div class="row gx-0 gy-x">
+            <div class="col-2 align-items-center d-flex flex-row-reverse fs-4">
+                <a asp-action="Index" asp-controller="StudentStatus"><i class="bi bi-list-ul fw-light"></i></a>
+                <a asp-action="Tiled" asp-controller="StudentStatus"><i class="bi bi-grid-3x3-gap text-primary fw-boldt"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="container d-flex">
+            <div class="row row-cols-1 row-cols-md-3">
+                @foreach (var item in Model)
+                {
+                <div class="col col-md-4 mt-2">
+                        <div class="card h-100">
+                        <div class="card-body">
+                            <h1 class="card-title text-center">
+                                <a asp-action="Details" asp-route-id="@item.Ssid" class="option1">
+                                    @item.Ssname
+                                </a>
+                            </h1>
+                            <p class="card-text mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Ssdescription)></p>
+                            <a asp-action="Edit" asp-route-id="@item.Ssid">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Ssid" class="card-link">Delete</a>
+                        </div>
+                    </div>
+                   </div>
+                }
+            </div>
+        </div>
+        </div>
+
