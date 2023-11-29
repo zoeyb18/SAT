@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace SAT.UI.MVC.Controllers//Update namespace
 {
     [Authorize(Roles = "Admin")]
+
     public class AdministrationController : Controller
     {
         #region Props/Ctors
