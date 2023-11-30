@@ -95,3 +95,9 @@
 
 </main>
 <!-- End #main -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
