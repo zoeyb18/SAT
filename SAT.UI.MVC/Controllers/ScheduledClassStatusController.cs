@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAT.DATA.EF.Models;
-using SAT.DATA.EF.Models;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class ScheduledClassStatusController : Controller
     {

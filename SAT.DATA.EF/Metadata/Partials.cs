@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+using SAT.DATA.EF.Metadata;
 
 namespace SAT.DATA.EF.Models //Metadata
 {
@@ -22,7 +24,11 @@ namespace SAT.DATA.EF.Models //Metadata
 
     #region Scheduled Class
     [ModelMetadataType(typeof(ScheduledClassMetadata))]
-    public partial class ScheduledClass { }
+    public partial class ScheduledClass 
+    {
+        [Display(Name = "Class Info")]
+        public string ClassInfo { get { return $"{StartDate} {Course} {Location}"; } }
+    }
     #endregion Scheduled Class
 
     #region Scheduled Class Status
@@ -37,6 +43,7 @@ namespace SAT.DATA.EF.Models //Metadata
         [NotMapped]
         public IFormFile? Photo { get; set; }
 
+        [Display(Name = "Name")]
         public string FullName { get { return $"{FirstName} {LastName}"; } }
     }
     #endregion Student

@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAT.DATA.EF.Models;
-using SAT.DATA.EF.Models;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class StudentsController : Controller
     {
@@ -65,7 +64,7 @@ namespace SAT.DATA.EF.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Ssid"] = new SelectList(_context.StudentStatuses, "Ssid", "Ssname", student.Ssid);
+            ViewData["Ssid"] = new SelectList(_context.StudentStatuses, "Ssid", "FullName", student.Ssid);
             return View(student);
         }
 
@@ -118,7 +117,7 @@ namespace SAT.DATA.EF.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Ssid"] = new SelectList(_context.StudentStatuses, "Ssid", "Ssname", student.Ssid);
+            ViewData["Ssid"] = new SelectList(_context.StudentStatuses, "Ssid", "FullName", student.Ssid);
             return View(student);
         }
 
@@ -155,14 +154,14 @@ namespace SAT.DATA.EF.Controllers
             {
                 _context.Students.Remove(student);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentExists(int id)
         {
-          return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
+            return (_context.Students?.Any(e => e.StudentId == id)).GetValueOrDefault();
         }
     }
 }

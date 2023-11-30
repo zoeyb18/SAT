@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SAT.DATA.EF.Models;
 using SAT.DATA.EF.Models;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class StudentStatusController : Controller
     {
@@ -22,9 +22,9 @@ namespace SAT.DATA.EF.Controllers
         // GET: StudentStatus
         public async Task<IActionResult> Index()
         {
-              return _context.StudentStatuses != null ? 
-                          View(await _context.StudentStatuses.ToListAsync()) :
-                          Problem("Entity set 'SATContext.StudentStatuses'  is null.");
+            return _context.StudentStatuses != null ?
+                        View(await _context.StudentStatuses.ToListAsync()) :
+                        Problem("Entity set 'SATContext.StudentStatuses'  is null.");
         }
 
         public async Task<IActionResult> Tiled()
@@ -156,14 +156,14 @@ namespace SAT.DATA.EF.Controllers
             {
                 _context.StudentStatuses.Remove(studentStatus);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentStatusExists(int id)
         {
-          return (_context.StudentStatuses?.Any(e => e.Ssid == id)).GetValueOrDefault();
+            return (_context.StudentStatuses?.Any(e => e.Ssid == id)).GetValueOrDefault();
         }
     }
 }

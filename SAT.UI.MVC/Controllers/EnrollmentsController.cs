@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAT.DATA.EF.Models;
-using SAT.DATA.EF.Models;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class EnrollmentsController : Controller
     {
@@ -49,8 +48,8 @@ namespace SAT.DATA.EF.Controllers
         // GET: Enrollments/Create
         public IActionResult Create()
         {
-            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "InstructureName");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Email");
+            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "ClassInfo");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName");
             return View();
         }
 
@@ -67,8 +66,8 @@ namespace SAT.DATA.EF.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "InstructureName", enrollment.ScheduledClassId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Email", enrollment.StudentId);
+            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "ClassInfo", enrollment.ScheduledClassId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
             return View(enrollment);
         }
 
@@ -85,8 +84,8 @@ namespace SAT.DATA.EF.Controllers
             {
                 return NotFound();
             }
-            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "InstructureName", enrollment.ScheduledClassId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Email", enrollment.StudentId);
+            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "ClassInfo", enrollment.ScheduledClassId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
             return View(enrollment);
         }
 
@@ -122,8 +121,8 @@ namespace SAT.DATA.EF.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "InstructureName", enrollment.ScheduledClassId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Email", enrollment.StudentId);
+            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "ClassInfo", enrollment.ScheduledClassId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FullName", enrollment.StudentId);
             return View(enrollment);
         }
 
@@ -161,14 +160,14 @@ namespace SAT.DATA.EF.Controllers
             {
                 _context.Enrollments.Remove(enrollment);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EnrollmentExists(int id)
         {
-          return (_context.Enrollments?.Any(e => e.EnrollmentId == id)).GetValueOrDefault();
+            return (_context.Enrollments?.Any(e => e.EnrollmentId == id)).GetValueOrDefault();
         }
     }
 }

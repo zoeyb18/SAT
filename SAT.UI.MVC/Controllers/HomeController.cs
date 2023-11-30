@@ -2,7 +2,7 @@
 using SAT.DATA.EF.Models;
 using System.Diagnostics;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,11 +18,15 @@ namespace SAT.DATA.EF.Controllers
             return View();
         }
 
-        public IActionResult MyProfile ()
+        public IActionResult MyProfile()
         {
             return View();
         }
 
+        public IActionResult Contact ()
+        {
+            return View();
+        }
 
 
         public IActionResult Privacy()

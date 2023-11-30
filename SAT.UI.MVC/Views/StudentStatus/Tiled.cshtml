@@ -35,9 +35,11 @@
                                     @item.Ssname
                                 </a>
                             </h1>
-                            <p class="card-text mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Ssdescription)></p>
-                            <a asp-action="Edit" asp-route-id="@item.Ssid">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@item.Ssid" class="card-link">Delete</a>
+                            <p class="card-text mb-0 font-weight-semibold">@Html.DisplayFor(modelItem => item.Ssdescription)</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-around">
+                            <a asp-action="Edit" asp-route-id="@item.Ssid" class="btn btn-primary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Ssid" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                    </div>

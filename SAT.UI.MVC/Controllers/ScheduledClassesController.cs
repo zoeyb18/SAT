@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAT.DATA.EF.Models;
-using SAT.DATA.EF.Models;
 
-namespace SAT.DATA.EF.Controllers
+namespace SAT.UI.MVC.Controllers
 {
     public class ScheduledClassesController : Controller
     {
@@ -51,6 +50,7 @@ namespace SAT.DATA.EF.Controllers
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseDescription");
             ViewData["Scsid"] = new SelectList(_context.ScheduledClassStatuses, "Scsid", "Scsname");
+            ViewData["ScheduledClassId"] = new SelectList(_context.ScheduledClasses, "ScheduledClassId", "InstructureName");
             return View();
         }
 
@@ -161,14 +161,14 @@ namespace SAT.DATA.EF.Controllers
             {
                 _context.ScheduledClasses.Remove(scheduledClass);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ScheduledClassExists(int id)
         {
-          return (_context.ScheduledClasses?.Any(e => e.ScheduledClassId == id)).GetValueOrDefault();
+            return (_context.ScheduledClasses?.Any(e => e.ScheduledClassId == id)).GetValueOrDefault();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAT.DATA.EF.Models//.Metadata
+namespace SAT.DATA.EF.Metadata//.Metadata
 {
     public class CourseMetadata
     {
@@ -13,7 +13,7 @@ namespace SAT.DATA.EF.Models//.Metadata
         public int CourseId { get; set; }
 
         [Required]
-        [Display(Name  = "Course")]
+        [Display(Name = "Course")]
         [StringLength(50, ErrorMessage = "Cannot Exceed 50 Characters")]
         public string CourseName { get; set; } = null!;
 
@@ -77,7 +77,6 @@ namespace SAT.DATA.EF.Models//.Metadata
         public string InstructureName { get; set; } = null!;
 
         [Required]
-        [Display(Name = "Location")]
         [StringLength(20, ErrorMessage = "Cannot Exceed 20 Characters")]
         public string Location { get; set; } = null!;
 
