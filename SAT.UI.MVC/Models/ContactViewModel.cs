@@ -4,21 +4,18 @@ namespace SAT.UI.MVC.Models
 {
     public class ContactViewModel
     {
-        [Required(ErrorMessage = "First Name is required")]
-        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "Last Name is required")]
-        public string LastName { get; set; }
-
-        [Required(ErrorMessage = "An Email is required")]
+        [Required(ErrorMessage = "Email is required")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please include a Subject is required")]
+        [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
 
-        [Required(ErrorMessage = "Please include a Message is required")]
-        [StringLength(2000)]
+        [Required(ErrorMessage = "A message is required")]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
-
     }
 }

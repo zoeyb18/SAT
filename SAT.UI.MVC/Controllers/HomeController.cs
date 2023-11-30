@@ -5,6 +5,7 @@ using System.Net.Mail;
 using SAT.UI.MVC.Models;
 using MimeKit;// Added for access to MimeMessage class
 using MailKit.Net.Smtp;// Added for access to SmtpClient class
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 
 namespace SAT.UI.MVC.Controllers
@@ -12,12 +13,13 @@ namespace SAT.UI.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IConfiguration _Configuration;
+
+        private readonly IConfiguration _config;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
-            _Configuration = config;
+            _config = config;
         }
 
         public IActionResult Index()
@@ -36,65 +38,52 @@ namespace SAT.UI.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactViewModel model)
+        public IActionResult Contact(ContactViewModel cvm)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // Send email if valid
-                string message = $"You have received a new email from your site's contact form!<br/>" +
-                $"Sender: {model.FirstName} {model.LastName}<br/>Email: {model.Email}<br/>Subject: {model.Subject}<br/>" +
-                $"Message: {model.Message}";
-
-                var Msg = new MimeMessage();
-                Msg.From.Add(new MailboxAddress("No Reply", _Configuration.GetValue<string>("Credentials:Email:User")));
-
-                Msg.To.Add(new MailboxAddress("Personal", _Configuration.GetValue<string>("Credentials:Email:Recipient")));
-
-                Msg.Subject = model.Subject;
-                Msg.Body = new TextPart("HTML") { Text = message };
-
-                Msg.Priority = MessagePriority.Urgent;
-
-                Msg.ReplyTo.Add(new MailboxAddress(model.FirstName + " " + model.LastName, model.Email));
-
-                using (var Client = new MailKit.Net.Smtp.SmtpClient())
-                {
-                    Client.Connect(_Configuration.GetValue<string>("Credentials:Email:Client"));
-
-                    Client.Authenticate(_Configuration.GetValue<string>("Credentials:Email:User"),
-                                        _Configuration.GetValue<string>("Credentials:Email:Password"));
-
-                    // It's possible the mail server could be down when the user tries to contact us,
-                    // so we can encapsulate our code to send the message in a try/catch.
-                    try
-                    {
-                        Client.Send(Msg);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        // If there is an issue we can store an error message
-                        // in a ViewBag variable to be displayed in the View.
-                        ViewBag.ErrorMessage = $"There was an error processing your request." +
-                            $"Please try again later.<br/>" +
-                            $"Error Message: {ex.StackTrace}";
-
-                        // Return the user to the View with their form info intact.
-                        return View(model);
-                    }
-                }
-
-
-                return RedirectToAction(nameof(ThankYou));
-
+                return View(cvm);
             }
 
-            return View(model);
-        }
+            var mm = new MimeMessage();
 
-        public IActionResult ThankYou()
-        {
-            return View();
+            string message = $"You have received a new email from your site's contact form!<br/>" +
+                $"Sender: {cvm.Name}<br/>Email: {cvm.Email}<br/>Subject: {cvm.Subject}<br/>" +
+            $"Message: {cvm.Message}";
+
+            mm.From.Add(new MailboxAddress("Sender", _config.GetValue<string>("Credentials:Email:User")));
+            mm.To.Add(new MailboxAddress("Personal", _config.GetValue<string>("Credentials:Email:Recipient")));
+
+            mm.Subject = cvm.Subject;
+            mm.Body = new TextPart("HTML") { Text = message };
+            mm.Priority = MessagePriority.Urgent;
+            mm.ReplyTo.Add(new MailboxAddress("User", cvm.Email));
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect(_config.GetValue<string>("Credentials:Email:Client"));
+                client.Authenticate(
+                    _config.GetValue<string>("Credentials:Email:User"),
+                    _config.GetValue<string>("Credentials:Email:Password")
+                    );
+
+                try
+                {
+                    client.Send(mm);
+                }
+                catch (Exception ex)
+                {
+
+                    ViewBag.ErrorMessage = $"There was an error processing your request." +
+                        $"Please try again later.<br/>" +
+                        $"Error Message: {ex.StackTrace}";
+
+                    return View(cvm);
+                }
+            }
+
+            return View("EmailConfirmation", cvm);
+
         }
         public IActionResult Privacy()
         {
