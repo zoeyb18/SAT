@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace SAT.UI.MVC.Data.Migrations
+namespace SAT.DATA.EF.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

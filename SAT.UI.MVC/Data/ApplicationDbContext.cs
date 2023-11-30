@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace SAT.UI.MVC.Data
+namespace SAT.DATA.EF.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

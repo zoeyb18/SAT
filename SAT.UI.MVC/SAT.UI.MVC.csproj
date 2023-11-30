@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-SAT.UI.MVC-9550e3f6-3db3-4df5-a2ee-02a91ebdb8c9</UserSecretsId>
+    <UserSecretsId>aspnet-SAT.DATA.EF-9550e3f6-3db3-4df5-a2ee-02a91ebdb8c9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

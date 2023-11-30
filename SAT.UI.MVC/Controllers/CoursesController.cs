@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SAT.UI.MVC.Models;
+using SAT.DATA.EF.Models;
+using SAT.DATA.EF.Models;
 
-namespace SAT.UI.MVC.Controllers
+namespace SAT.DATA.EF.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
         private readonly SATContext _context;

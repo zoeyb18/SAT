@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SAT.UI.MVC.Models;
+using SAT.DATA.EF.Models;
 using System.Diagnostics;
 
-namespace SAT.UI.MVC.Controllers
+namespace SAT.DATA.EF.Controllers
 {
     public class HomeController : Controller
     {

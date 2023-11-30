@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace SAT.UI.MVC.Areas.Identity.Pages.Account
+namespace SAT.DATA.EF.Areas.Identity.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {

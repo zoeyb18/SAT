@@ -1,9 +1,9 @@
-﻿using SAT.UI.MVC.Models;
+﻿using SAT.DATA.EF.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SAT.UI.MVC.Controllers//Update namespace
+namespace SAT.DATA.EF.Controllers//Update namespace
 {
     [Authorize(Roles = "Admin")]
 

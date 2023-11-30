@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SAT.UI.MVC.Models
+namespace SAT.DATA.EF.Models
 {
     public class CreateRoleViewModel
     {

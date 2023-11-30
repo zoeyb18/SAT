@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SAT.UI.MVC.Data;
+using SAT.DATA.EF.Data;
 using System;
 
-namespace SAT.UI.MVC.Data.Migrations
+namespace SAT.DATA.EF.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

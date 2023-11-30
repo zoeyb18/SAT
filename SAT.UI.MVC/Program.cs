@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SAT.UI.MVC.Data;
-using SAT.UI.MVC.Models;
+using SAT.DATA.EF.Data;
+using SAT.DATA.EF.Models;
 using System.Data;
 
-namespace SAT.UI.MVC
+namespace SAT.DATA.EF
 {
     public class Program
     {

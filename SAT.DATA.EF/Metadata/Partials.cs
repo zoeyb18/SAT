@@ -36,6 +36,8 @@ namespace SAT.DATA.EF.Models //Metadata
     {
         [NotMapped]
         public IFormFile? Photo { get; set; }
+
+        public string FullName { get { return $"{FirstName} {LastName}"; } }
     }
     #endregion Student
 
@@ -43,5 +45,9 @@ namespace SAT.DATA.EF.Models //Metadata
     [ModelMetadataType(typeof(StudentStatusMetadata))]
     public partial class StudentStatus { }
     #endregion Student Status
+
+
+
+
 
 }

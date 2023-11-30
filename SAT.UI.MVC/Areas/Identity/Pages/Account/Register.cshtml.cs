@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace SAT.UI.MVC.Areas.Identity.Pages.Account
+namespace SAT.DATA.EF.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {

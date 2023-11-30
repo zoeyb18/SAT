@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "SAT.UI.MVC": {
+    "SAT.DATA.EF": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
