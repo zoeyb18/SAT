@@ -1246,6 +1246,18 @@ h6 {
     margin: 0;
     padding: 0;
 }
+.section {
+    text-align: center; /* Center-align the content within the section */
+}
+.bg.bg-light {
+    font-size: 2em; /* Adjust the font size as needed */
+    margin-bottom: 20px;
+    padding:20px 100px;
+
+    
+ 
+}
+
 
 
 
