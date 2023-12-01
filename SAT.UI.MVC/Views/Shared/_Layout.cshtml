@@ -45,7 +45,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="~/assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
+                <span class="d-none d-lg-block">SAT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -66,16 +66,16 @@
                     </a>
                 </li><!-- End Search Icon-->
 
-             
 
-               
+
+
 
                 <li class="nav-item dropdown pe-3">
 
 
 
-                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                       
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
                         <span class="d-none d-md-block dropdown-toggle ps-2">User</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -107,22 +107,9 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                      
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                               
-                            </a>
-                        </li> 
+                      
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
@@ -134,81 +121,104 @@
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
+
+
+
         <ul class="sidebar-nav" id="sidebar-nav">
+
 
             <li class="nav-item bi bi-house">
                 @Html.ActionLink("Home", "Index", "Home")
             </li><!-- End Home Page Nav -->
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-menu-button-wide"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="@Url.Action("ListRoles", "Administration")">
+                                <i class="bi bi-circle"></i><span>Roles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ListUsers", "Administration")">
+                                <i class="bi bi-circle"></i><span>User Details</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="@Url.Action("ListRoles", "Administration")">
-                            <i class="bi bi-circle"></i><span>Roles</span>
-                        </a>
+
+
+                <li class="nav-item bi bi-book">
+                        @Html.ActionLink("Courses", "Index", "Courses")
+                </li>
+            }
+                <!-- End Courses Page Nav -->
+            @if (User.IsInRole("Admin")|| User.IsInRole("Scheduling"))
+            {
+                <li class="nav-item bi bi-pencil">
+                    @Html.ActionLink("Enroll", "Index", "Enrollments")
+                </li><!-- End Enrollments Page Nav -->
+
+                <li class="nav-item bi bi-card-checklist">
+                    @Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")
+                </li><!-- End Scheduled Class Page Nav -->
+
+                
+
+                <li class="nav-item bi bi-backpack">
+                    @Html.ActionLink("Students", "Index", "Students")
+                </li><!-- End Error 404 Page Nav -->
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item bi bi-info-square">
+                    @Html.ActionLink("Student Status", "Index", "StudentStatus")
+                </li>
+
+                <!-- End Student Status Nav -->
+                <li class="nav-item bi bi-clipboard-data">
+                    @Html.ActionLink("Scheduled Class Status", "Index", "ScheduledClassStatus")
+                </li>
+
+                <!-- End Scheduled Class Status Page Nav -->
+            }
+
+                    <li class="nav-item bi bi-mailbox-flag">
+                            @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
-                    <li>
-                        <a href="@Url.Action("ListUsers", "Administration")">
-                            <i class="bi bi-circle"></i><span>User Details</span>
-                        </a>
-                    </li>
-                </ul>
 
-            <li class="nav-item bi bi-book">
-                @Html.ActionLink("Courses", "Index", "Courses")
-            </li>
-            <!-- End Courses Page Nav -->
+                        <!-- End Student Status Nav -->
+                    
 
-            <li class="nav-item bi bi-pencil">
-                @Html.ActionLink("Enroll", "Index", "Enrollments")
-            </li><!-- End Enrollments Page Nav -->
+            </ul>
 
-            <li class="nav-item bi bi-card-checklist">
-                @Html.ActionLink("Scheduled Classes", "Index", "ScheduledClasses")
-            </li><!-- End Scheduled Class Page Nav -->
+        </aside>
 
-            <li class="nav-item bi bi-clipboard-data">
-                @Html.ActionLink("Scheduled Class Status", "Index", "ScheduledClassStatus")
-            </li><!-- End Scheduled Class Status Page Nav -->
-
-            <li class="nav-item bi bi-backpack">
-                @Html.ActionLink("Students", "Index", "Students")
-            </li><!-- End Error 404 Page Nav -->
-
-            <li class="nav-item bi bi-info-square">
-                @Html.ActionLink("Student Status", "Index", "StudentStatus")
-            </li><!-- End Student Status Nav -->
-
-            <li class="nav-item bi bi-mailbox-flag">
-                    @Html.ActionLink("Contact", "Contact", "Home")
-            </li><!-- End Student Status Nav -->
-
-        </ul>
-
-    </aside><!-- End Sidebar-->
+                <!-- End Sidebar-->
 
 
-    
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - SAT.DATA.EF - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                        @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - SAT.DATA.EF - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
 
 
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/js/main.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+                @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+        <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/main.js" asp-append-version="true"></script>
+                @await RenderSectionAsync("Scripts", required: false)
+    </body>
 
-</html>
+    </html>

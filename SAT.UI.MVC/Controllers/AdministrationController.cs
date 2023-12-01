@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SAT.DATA.EF.Controllers//Update namespace
 {
-    [Authorize(Roles = "Admin")]
+   [Authorize(Roles = "Admin")]
 
     public class AdministrationController : Controller
     {
